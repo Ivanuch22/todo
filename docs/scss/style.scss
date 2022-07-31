@@ -1,0 +1,92 @@
+@import'nulestyle';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+
+:root {
+    --main-bg-collor: #C7EBF0;
+}
+
+body {
+    background-color: var(--main-bg-collor);
+    margin          : 0 auto;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    font-family     : 'Poppins', sans-serif;
+}
+
+.title {
+    font-style    : normal;
+    font-weight   : 900;
+    font-size     : 42px;
+    line-height   : 51px;
+    letter-spacing: 0.02em;
+    color         : #000000;
+    margin-bottom : 10px;
+}
+
+.block {
+    max-width: 840px;
+    margin   : 0 auto;
+    padding  : 15px 0;
+}
+
+.block-line {
+    display         : flex;
+    background-color: #6279B8;
+    padding         : 20px;
+    border-radius   : 30px;
+    margin-bottom   : 15px;
+}
+
+.block-title {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 20px;
+    line-height: 24px;
+    margin-left: 10px;
+    color      : #FAF3DD;
+}
+
+.block-input {
+    background   : #FAF3DD;
+    border-radius: 30px;
+    width        : 100%;
+    padding      : 15px;
+    font-size    : 16px;
+    color        : #6279B8;
+    font-weight  : 400;
+    line-height  : 20px;
+    padding-left : 40px;
+
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        font-weight: 400;
+        font-size  : 16px;
+        line-height: 20px;
+        color      : #6279B8;
+        opacity    : 1;
+    }
+
+
+}
+
+.block-bottom {
+    position: relative;
+
+
+}
+
+button {
+    background-color: transparent;
+    color           : #6279B8;
+    position        : absolute;
+    right           : 20px;
+    top             : 50%;
+    transform       : translateY(-50%);
+}
+
+.block-checkbox {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
