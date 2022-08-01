@@ -1,72 +1,59 @@
+
 const input = document.querySelector('.block-input');
 const button = document.querySelector('button');
 const block = document.querySelector('.block-top');
+let id = 0;
+let arrayGlobal = [];
+// event на створеному таску а саме на checkbox
+// getCheckboxs = () => {
+//     const checkboxs = document.querySelectorAll('input[type=checkbox]')
+//     checkboxs.forEach(element => {
+//         element.addEventListener("click", (e) => {
+//             console.log(e.target.id)
+//         })
+//     });
+// }
 
-const arrayTasks = [];
+//////
+button.addEventListener("click", (e) => {
+    e.preventDefault();
+    id++
+    addNewTask(input.value, id);
+    setLocalStorageInput(input.value, id)
 
+    input.value = '';
+});
 
-//set localstorage with text from input 
-const updateLocalStorage = (text) => {
-    // беремо данні з сховку до того як ми їх змінили 
-    const before = JSON.parse(localStorage.getItem('tasks'));
-
-    // змінюємо їх 
-    arrayTasks.push({ text: text });
-
-    // данні, масив який містить нову інформацію без старої 
-    const after = JSON.parse(JSON.stringify(arrayTasks));
-
-    // до купи і старі данні і нові
-    let newArrayTasks = []
-    if (before) {
-        newArrayTasks = [...before, ...after]
-    } else {
-        newArrayTasks = [...after]
-
-    }
-    // відправляєм у сховок набір з старих і нових данних
-    localStorage.setItem("tasks", JSON.stringify(newArrayTasks));
-};
-
-const renderTasks = () => {
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
-    tasks.forEach(element => {
-        addNewTask(element.text);
-    });
-};
-
-
-////
-const addNewTask = (text) => {
+addNewTask = (text, id = 0) => {
     const blockLine = document.createElement('div');
     blockLine.classList.add('block-line');
+    // blockLine.setAttribute('id', id);
+
     blockLine.innerHTML = `
     <div class="block-checkbox">
-        <input  type="checkbox">
+        <input  type="checkbox" id = "${id}">
     </div>
     <p class="block-title">${text} </p>
     `;
     block.append(blockLine);
 };
 
-//////
-button.addEventListener("click", (e) => {
-    const inputValue = input.value;
-    e.preventDefault();
-    addNewTask(inputValue);
-    updateLocalStorage(inputValue);
-    input.value = '';
-});
+setLocalStorageInput = (text, id, boolean = false) => {
+    arrayGlobal.push({ name: text, id: id, value: boolean })
+    localStorage.setItem('task', JSON.stringify(arrayGlobal));
+}
 
-renderTasks();
+getLocalStorageInput = () => {
+    let array = localStorage.getItem('task');
+    array = JSON.parse(array);
+    if (array) {
+        arrayGlobal.push(...array);
+    } else {
+        arrayGlobal = [];
+    }
+}
 
-
-
-//потрібно зробити функціонал для добавлення завдання в список де текст буде братись з input-а
-
-
-
-
+getLocalStorageInput();
 
 
 
@@ -83,4 +70,3 @@ renderTasks();
 
 
 
-//потрібто зробити функціонал для запису, і після відображення з памяті(local storage або ще щось ) усього списку задач і його стану( виконаний чи нє)
