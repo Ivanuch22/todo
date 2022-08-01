@@ -48,11 +48,15 @@ getLocalStorageInput = () => {
     array = JSON.parse(array);
     if (array) {
         arrayGlobal.push(...array);
+        arrayGlobal.forEach(e => {
+            const { name, id } = e;
+            addNewTask(name, id)
+        })
     } else {
         arrayGlobal = [];
-    }
-}
-
+    };
+    return array;
+};
 getLocalStorageInput();
 
 
