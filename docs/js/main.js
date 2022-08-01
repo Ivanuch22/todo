@@ -4,15 +4,6 @@ const button = document.querySelector('button');
 const block = document.querySelector('.block-top');
 let id = 0;
 let arrayGlobal = [];
-// event на створеному таску а саме на checkbox
-// getCheckboxs = () => {
-//     const checkboxs = document.querySelectorAll('input[type=checkbox]')
-//     checkboxs.forEach(element => {
-//         element.addEventListener("click", (e) => {
-//             console.log(e.target.id)
-//         })
-//     });
-// }
 
 //////
 button.addEventListener("click", (e) => {
@@ -20,7 +11,6 @@ button.addEventListener("click", (e) => {
     id++
     addNewTask(input.value, id);
     setLocalStorageInput(input.value, id)
-
     input.value = '';
 });
 
@@ -47,7 +37,11 @@ getLocalStorageInput = () => {
     let array = localStorage.getItem('task');
     array = JSON.parse(array);
     if (array) {
+        //запис ід в глабальну константу
+        array.forEach(e => { id = e.id; })
+        // добавлення данних з storage в константу
         arrayGlobal.push(...array);
+        // відображення tasks
         arrayGlobal.forEach(e => {
             const { name, id } = e;
             addNewTask(name, id)
@@ -58,7 +52,6 @@ getLocalStorageInput = () => {
     return array;
 };
 getLocalStorageInput();
-
 
 
 
