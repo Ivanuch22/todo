@@ -24,6 +24,10 @@ button {
     transform       : translateY(-50%);
 }
 
+.root {
+    max-height: 100vh;
+}
+
 .title {
     font-style    : normal;
     font-weight   : 900;
