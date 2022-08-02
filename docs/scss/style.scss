@@ -15,6 +15,15 @@ body {
     padding         : 15px;
 }
 
+button {
+    background-color: transparent;
+    color           : #6279B8;
+    position        : absolute;
+    right           : 20px;
+    top             : 50%;
+    transform       : translateY(-50%);
+}
+
 .title {
     font-style    : normal;
     font-weight   : 900;
@@ -37,6 +46,7 @@ body {
     padding         : 20px;
     border-radius   : 30px;
     min-width       : 500px;
+    position        : relative;
     margin-bottom   : 15px;
 }
 
@@ -80,17 +90,15 @@ body {
 
 }
 
-button {
-    background-color: transparent;
-    color           : #6279B8;
-    position        : absolute;
-    right           : 20px;
-    top             : 50%;
-    transform       : translateY(-50%);
-}
 
 .block-checkbox {
     display        : flex;
     justify-content: center;
     align-items    : center;
+}
+
+.block-button {
+    position: absolute;
+    color   : #C7EBF0;
+    right   : 25px;
 }

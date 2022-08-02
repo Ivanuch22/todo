@@ -19,9 +19,9 @@ addNewTask = (text, value) => {
     blockLine.classList.add('block-line');
     blockLine.innerHTML = `
     <div class="block-checkbox">
-    ${value ? `<input  type="checkbox" checked >` : `<input  type="checkbox" >`}
+        ${value ? `<input  type="checkbox" checked >` : `<input  type="checkbox" >`}
     </div>
-    <p class="block-title">${text} </p>
+    <p class="block-title">${text} <div  class="block-button">Удалить</div> </p>
     `;
     block.append(blockLine);
 
@@ -71,3 +71,25 @@ changeValue = (id) => {
 }
 
 
+block.addEventListener('click', (e) => {
+    const child = document.querySelectorAll('.block-button')
+    let array = localStorage.getItem('task');
+    array = JSON.parse(array);
+    child.forEach((element, id) => {
+        if (e.target === element) {
+            e.preventDefault()
+            let before = array.slice(0, id)
+            let after = array.slice(++id)
+            const newArr = [];
+            newArr.push(...before, ...after)
+            arrayGlobal.splice(0);
+            arrayGlobal.push(...newArr)
+            block.innerHTML = '';
+            newArr.forEach((element, id) => {
+                addNewTask(element.name, element.value)
+            })
+            localStorage.setItem("task", JSON.stringify(arrayGlobal));
+
+        }
+    })
+})
