@@ -4,8 +4,6 @@ const block = document.querySelector('.block-top');
 let id = 0;
 let arrayGlobal = [];
 
-
-
 addNewTask = (text, value) => {
     const blockLine = document.createElement('div');
     blockLine.classList.add('block-line');
