@@ -46,6 +46,7 @@ button {
     padding         : 20px;
     border-radius   : 30px;
     position        : relative;
+    padding-right   : 80px;
     margin-bottom   : 15px;
 }
 
@@ -69,7 +70,7 @@ button {
     font-weight  : 400;
     padding-right: 50px;
     line-height  : 20px;
-    padding-left : 40px;
+    padding-left : 20px;
 
     &::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -79,16 +80,11 @@ button {
         color      : #6279B8;
         opacity    : 1;
     }
-
-
 }
 
 .block-bottom {
     position: relative;
-
-
 }
-
 
 .block-checkbox {
     display        : flex;
@@ -97,7 +93,9 @@ button {
 }
 
 .block-button {
-    position: absolute;
-    color   : #C7EBF0;
-    right   : 25px;
+    position : absolute;
+    color    : #C7EBF0;
+    top      : 50%;
+    transform: translateY(-50%);
+    right    : 25px;
 }

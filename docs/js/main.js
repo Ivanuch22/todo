@@ -4,15 +4,7 @@ const block = document.querySelector('.block-top');
 let id = 0;
 let arrayGlobal = [];
 
-button.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (input.value) {
-        id++
-        setLocalStorageInput(input.value, id, false)
-        addNewTask(input.value, false);
-        input.value = '';
-    }
-});
+
 
 addNewTask = (text, value) => {
     const blockLine = document.createElement('div');
@@ -24,12 +16,24 @@ addNewTask = (text, value) => {
     <p class="block-title">${text} <div  class="block-button">Удалить</div> </p>
     `;
     block.append(blockLine);
-
 };
+
+changeValue = (id) => {
+    let array = localStorage.getItem('task');
+    array = JSON.parse(array);
+    if (array[id].value) {
+        array[id].value = false;
+    } else {
+        array[id].value = true;
+    }
+    localStorage.setItem("task", JSON.stringify(array));
+}
+
 setLocalStorageInput = (text, id, boolean) => {
     arrayGlobal.push({ name: text, id: id, value: boolean })
     localStorage.setItem('task', JSON.stringify(arrayGlobal));
 }
+
 
 getLocalStorageInput = () => {
     let array = localStorage.getItem('task');
@@ -50,6 +54,17 @@ getLocalStorageInput = () => {
 };
 getLocalStorageInput()
 
+
+button.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (input.value) {
+        id++
+        setLocalStorageInput(input.value, id, false)
+        addNewTask(input.value, false);
+        input.value = '';
+    }
+});
+
 block.addEventListener('click', (e) => {
     const child = document.querySelectorAll('input[type=checkbox]')
     child.forEach((element, id) => {
@@ -58,17 +73,6 @@ block.addEventListener('click', (e) => {
         }
     })
 })
-
-changeValue = (id) => {
-    let array = localStorage.getItem('task');
-    array = JSON.parse(array);
-    if (array[id].value) {
-        array[id].value = false;
-    } else {
-        array[id].value = true;
-    }
-    localStorage.setItem("task", JSON.stringify(array));
-}
 
 
 block.addEventListener('click', (e) => {
@@ -89,7 +93,7 @@ block.addEventListener('click', (e) => {
                 addNewTask(element.name, element.value)
             })
             localStorage.setItem("task", JSON.stringify(arrayGlobal));
-
         }
     })
 })
+
