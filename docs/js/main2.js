@@ -9,16 +9,18 @@ class Task {
         this.completed = false
     }
     addNewTask = (completed = false) => {
-        const blockLine = document.createElement('div');
-        blockLine.classList.add('block-line');
-        blockLine.innerHTML = `
-        <div class="block-checkbox">
-            <input  type="checkbox" ${completed ? "checked" : ""}>
+        if (this.text) {
+            const blockLine = document.createElement('div');
+            blockLine.classList.add('block-line');
+            blockLine.innerHTML = `
+    <div class="block-checkbox">
+        <input  type="checkbox" ${completed ? "checked" : ""}>
 
-        </div>
-        <p class="block-title">${this.text} <div  class="block-button">Удалить</div> </p>
-        `;
-        block.append(blockLine);
+    </div>
+    <p class="block-title">${this.text} <div  class="block-button">Удалить</div> </p>
+    `;
+            block.append(blockLine);
+        }
     };
     addNewTaskLocal = () => {
         data.push({ text: this.text, completed: this.completed })
